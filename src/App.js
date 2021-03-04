@@ -1,14 +1,18 @@
 import './App.css';
-import MainPage from './pages/index.jsx'
-import ErrorPage from './pages/error.jsx'
+import MainPage from './pages/index.jsx';
+import ErrorPage from './pages/error.jsx';
+import ShowRecipe from './pages/showRecipe.jsx';
 
-import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
-      <Route path="/" component={MainPage} />
-      <Route path="/404" component={ErrorPage} />
+      <Switch>
+        <Route path="/" exact component={MainPage} />
+        <Route path="/recipe/:id" exact component={ShowRecipe} />
+        <Route path="/404" component={ErrorPage} />
+      </Switch>
     </Router>
   );
 }
