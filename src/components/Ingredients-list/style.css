@@ -1,0 +1,45 @@
+.ingredient-list-container{
+    font-family: 'Handlee', cursive;
+    font-weight: 500;
+    font-size: larger;
+    width: 370px;
+    margin: 20px;
+    border: 1px solid red;
+}
+
+ul {
+    margin: 0;
+    padding: 10px;
+}
+
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ingredient-quantity {
+    float: right;
+}
+
+.ingredient-top {
+    background-image: url(../../assets/ingredients-top.png);
+    height: 50px;
+    background-repeat: no-repeat;
+}
+
+.ingredient-bottom {
+    background-image: url(../../assets/ingredients-botom.png);
+    height: 50px;
+    background-repeat: no-repeat;
+}
+.ingredient-mid {
+    background-image: url(../../assets/ingredients-mid.png);
+    min-height: 200px;
+    background-repeat: repeat-y;
+}
+
+@font-face{
+    font-family: 'HomemadeApple';
+    src: local('HomemadeApple'), url(/src/fonts/HomemadeApple.ttf), format('truetype');
+}

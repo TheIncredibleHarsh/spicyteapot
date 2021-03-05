@@ -1,5 +1,6 @@
 import React from 'react';
 import Data from '../data.json';
+import IngredientList from '../components/Ingredients-list/index';
 
 const ShowRecipe = (props) => {
     const recipe = Data[0];
@@ -11,7 +12,7 @@ const ShowRecipe = (props) => {
                 {recipe.name}
             </p>
             <p>
-                {recipe.steps}
+                <IngredientList ingredients={recipe.ingredients} />
             </p>
         </p>
     )
