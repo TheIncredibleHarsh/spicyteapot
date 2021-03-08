@@ -1,16 +1,21 @@
 import React from 'react';
-import Data from '../data.json';
 import IngredientList from '../components/Ingredients-list/index';
 import '../stylesheets/recipe.css';
 import RecipeInstruction from '../components/recipe-instruction/index';
 
 const ShowRecipe = (props) => {
-    const recipe = Data[0];
+    var recipe;
+    if(props.recipe) {
+        recipe = props.recipe    
+    }
+
     return (
+        <>
         <div class="flex-container">
             <IngredientList ingredients={recipe.ingredients} />
             <RecipeInstruction recipeInstruction={recipe.steps}/>
         </div>
+        </>
     )
 };
 

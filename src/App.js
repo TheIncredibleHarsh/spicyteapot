@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/" exact component={MainPage} />
-        <Route path="/recipe/:id" exact component={ShowRecipe} />
+        <Route path="/hello" exact component={ShowRecipe} />
         <Route path='/recipes' exact component={Recipes} />
         <Route path="/404" component={ErrorPage} />
       </Switch>
