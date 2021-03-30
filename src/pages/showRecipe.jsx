@@ -5,15 +5,15 @@ import RecipeInstruction from '../components/recipe-instruction/index';
 
 const ShowRecipe = (props) => {
     var recipe;
-    if(props.recipe) {
-        recipe = props.recipe    
+    if(props.location.state.recipe) {
+        recipe = props.location.state.recipe    
     }
 
     return (
         <>
-        <div class="flex-container">
-            <IngredientList ingredients={recipe.ingredients} />
-            <RecipeInstruction recipeInstruction={recipe.steps}/>
+        <div class="recipe-container">
+            <IngredientList ingredients={recipe.extendedIngredients} />
+            <RecipeInstruction recipeInstruction={recipe.instructions}/>
         </div>
         </>
     )

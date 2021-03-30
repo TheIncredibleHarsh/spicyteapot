@@ -10,7 +10,7 @@ const IngredientList = (props) => {
           {props.ingredients.map((ingredient) => (
             <li>
               <span class="ingredient-name">{ingredient.name}</span>
-              <span class="ingredient-quantity">{ingredient.quantity}</span>
+              <span class="ingredient-quantity">{ingredient.measures.metric.amount + ingredient.measures.metric.unitShort}</span>
             </li>
           ))}
         </ul>

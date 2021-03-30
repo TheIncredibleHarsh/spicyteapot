@@ -9,7 +9,6 @@ const createMarkup = (htmlString) => {
 const RecipeListItem = (props) => {
 	const recipe = props.recipe;
   const history = useHistory();
-  console.log(history);
   return (
     <div onClick={() => props.switchPage(history, "/recipe/" + recipe.id, recipe)}>
       <div className="flex-container">
