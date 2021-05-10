@@ -13,15 +13,19 @@ const Recipes = (props) => {
 	// const recipeList = Data.recipes;
 
 	useEffect(async () => {
-		if (recipeList == null) {
-			return;
-		}
-		await fetch('https://api.spoonacular.com/recipes/random?number=20&apiKey=3c6b5aedfaf34bb899d1751ea2feb1b2')
-		.then((resp) => resp.json())
-		.then((data) => {
+		if (parseInt(localStorage.getItem("lastFetchTime")) + 8640000 > Date.now()) {
+			setRecipeList(JSON.parse(localStorage.getItem("recipeList")));
+			setIsLoading(false);
+		} else {
+			await fetch('https://api.spoonacular.com/recipes/random?number=20&apiKey=3c6b5aedfaf34bb899d1751ea2feb1b2')
+							.then((resp) => resp.json())
+							.then((data) => {
 			setRecipeList(data.recipes);
 			setIsLoading(false);
+			localStorage.setItem("recipeList", JSON.stringify(data.recipes));
+			localStorage.setItem("lastFetchTime", Date.now());
 		})
+		}
 	}, [])
 
 	if (isLoading) {
