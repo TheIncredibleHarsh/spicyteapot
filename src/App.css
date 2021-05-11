@@ -1,5 +1,5 @@
 body {
-  background-color: #e0fbfc;
+  background-color: #F2E8CF;
 }
 
 .App {
@@ -18,7 +18,7 @@ body {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #F2E8CF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

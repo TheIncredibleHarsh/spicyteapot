@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import RecipeListItem from "../components/recipe-list-item/index.jsx";
-import Data from "../assets/better-data.json";
+import { FilterOptions, SortOptions } from "../lib/filter-sort-options";
+import FilterItem from "../components/filter-item/index.jsx";
+import '../stylesheets/recipe.css';
 
 const switchPage = (hist, url, recipe) => {
   hist.push(url, {recipe: recipe});
@@ -10,7 +12,6 @@ const switchPage = (hist, url, recipe) => {
 const Recipes = (props) => {
 	const [recipeList, setRecipeList] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	// const recipeList = Data.recipes;
 
 	useEffect(async () => {
 		if (parseInt(localStorage.getItem("lastFetchTime")) + 8640000 > Date.now()) {
@@ -33,13 +34,24 @@ const Recipes = (props) => {
 			<p>loading...</p>
 		</>
 	} else {
-		return <>
+		return( 
+		<div class="recipe-list-page">
 			<div className="recipe-list-container">
 				{recipeList.map((value) => {
 					return <RecipeListItem switchPage={switchPage} recipe={value} />
 				})}
 			</div>
-		</>;
+			<div class="recipe-list-filter">
+				<ul>
+					<li>
+						{FilterOptions.map((filterOption) => {
+							return <FilterItem filterOption={filterOption} />
+						})}
+					</li>
+				</ul>
+			</div>
+		</div>
+		);
 	}	
 };
 
