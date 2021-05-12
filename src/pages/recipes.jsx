@@ -12,6 +12,7 @@ const switchPage = (hist, url, recipe) => {
 const Recipes = (props) => {
 	const [recipeList, setRecipeList] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [filters, setFilters] = useState({});
 
 	useEffect(async () => {
 		if (parseInt(localStorage.getItem("lastFetchTime")) + 8640000 > Date.now()) {
@@ -27,7 +28,11 @@ const Recipes = (props) => {
 			localStorage.setItem("lastFetchTime", Date.now());
 		})
 		}
-	}, [])
+	}, []);
+
+	const updateFilter = (filter) => {
+
+	}
 
 	if (isLoading) {
 		return <>
@@ -45,7 +50,7 @@ const Recipes = (props) => {
 				<ul>
 					<li>
 						{FilterOptions.map((filterOption) => {
-							return <FilterItem filterOption={filterOption} />
+							return <FilterItem filterOption={filterOption} updateFilter={updateFilter()} />
 						})}
 					</li>
 				</ul>

@@ -22,7 +22,12 @@ const FilterOptions = [
     {
         label: "Time",
         type: "range",
-        fieldName: "time"
+        fieldName: "time",
+        additionalAttr: {
+            min: "0",
+            max: "180",
+            step: "10"
+        }
     }
 ];
 
