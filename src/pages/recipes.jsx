@@ -12,7 +12,13 @@ const switchPage = (hist, url, recipe) => {
 const Recipes = (props) => {
 	const [recipeList, setRecipeList] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [filters, setFilters] = useState({});
+	const [filter, setFilter] = useState({
+		vegan: true,
+		vegetarian: true,
+		glutenFree: true,
+		dairyFree: true,
+		time: 180
+	});
 
 	useEffect(async () => {
 		if (parseInt(localStorage.getItem("lastFetchTime")) + 8640000 > Date.now()) {
@@ -30,10 +36,12 @@ const Recipes = (props) => {
 		}
 	}, []);
 
-	const updateFilter = (filter) => {
-
-	}
-
+	const updateFilter = (key, value) => {
+		var tempFilter = filter;
+		tempFilter[key] = value;
+		setFilter(tempFilter);
+	};
+	console.log("this", this);
 	if (isLoading) {
 		return <>
 			<p>loading...</p>
@@ -50,7 +58,11 @@ const Recipes = (props) => {
 				<ul>
 					<li>
 						{FilterOptions.map((filterOption) => {
-							return <FilterItem filterOption={filterOption} updateFilter={updateFilter()} />
+							return 	<FilterItem 
+										filterOption={filterOption} 
+										updateFilter={updateFilter} 
+										filter={filter}
+									/>
 						})}
 					</li>
 				</ul>

@@ -17,7 +17,7 @@ const FilterOptions = [
     {
         label: "Dairy Free",
         type: "checkbox",
-        fieldName: "DairyFree"
+        fieldName: "dairyFree"
     },
     {
         label: "Time",
