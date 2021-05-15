@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const FilterItem = (props) => {
 
@@ -11,6 +11,8 @@ const FilterItem = (props) => {
                     return event.target.checked;
                 case "range":
                     return event.target.value
+                default:
+                    return true 
             }
         })();
         
@@ -20,6 +22,9 @@ const FilterItem = (props) => {
     return (
         <>
             <div style={{padding: 5}}>
+                <p>
+                    {JSON.stringify(props.filter)}
+                </p>
                 <input 
                     type={props.filterOption.type} 
                     {...props.filterOption.additionalAttr} 

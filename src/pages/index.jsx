@@ -1,8 +1,10 @@
-import React from 'react';
+import React  from 'react';
 
 const MainPage = () => {
     return (
-        <h1>Index Page</h1>
+        <>
+            <h1>Index Page</h1>
+        </>
     )
 };
 

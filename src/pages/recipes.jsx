@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RecipeListItem from "../components/recipe-list-item/index.jsx";
-import { FilterOptions, SortOptions } from "../lib/filter-sort-options";
+import { FilterOptions } from "../lib/filter-sort-options";
 import FilterItem from "../components/filter-item/index.jsx";
 import '../stylesheets/recipe.css';
 
@@ -10,16 +10,24 @@ const switchPage = (hist, url, recipe) => {
 
 
 const Recipes = (props) => {
+	const [filter, setFilter] = useState({});
 	const [recipeList, setRecipeList] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [filter, setFilter] = useState({
-		vegan: true,
-		vegetarian: true,
-		glutenFree: true,
-		dairyFree: true,
-		time: 180
-	});
+	const [test, setTest] = useState();
 
+	const updateFilter = (key, value) => {
+		var tempFilter = filter;
+		tempFilter[key] = value;
+		setFilter(tempFilter);
+	};
+	
+	 
+    useEffect(() => {
+        setTest(JSON.stringify(filter));
+    }, [filter]);
+
+
+	// eslint-disable-next-line
 	useEffect(async () => {
 		if (parseInt(localStorage.getItem("lastFetchTime")) + 8640000 > Date.now()) {
 			setRecipeList(JSON.parse(localStorage.getItem("recipeList")));
@@ -36,12 +44,6 @@ const Recipes = (props) => {
 		}
 	}, []);
 
-	const updateFilter = (key, value) => {
-		var tempFilter = filter;
-		tempFilter[key] = value;
-		setFilter(tempFilter);
-	};
-	console.log("this", this);
 	if (isLoading) {
 		return <>
 			<p>loading...</p>
@@ -49,6 +51,9 @@ const Recipes = (props) => {
 	} else {
 		return( 
 		<div class="recipe-list-page">
+			<p>
+				{JSON.stringify(test)}
+			</p>
 			<div className="recipe-list-container">
 				{recipeList.map((value) => {
 					return <RecipeListItem switchPage={switchPage} recipe={value} />
