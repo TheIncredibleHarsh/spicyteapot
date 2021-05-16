@@ -22,9 +22,6 @@ const FilterItem = (props) => {
     return (
         <>
             <div style={{padding: 5}}>
-                <p>
-                    {JSON.stringify(props.filter)}
-                </p>
                 <input 
                     type={props.filterOption.type} 
                     {...props.filterOption.additionalAttr} 

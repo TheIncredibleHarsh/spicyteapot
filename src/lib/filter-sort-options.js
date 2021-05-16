@@ -19,16 +19,16 @@ const FilterOptions = [
         type: "checkbox",
         fieldName: "dairyFree"
     },
-    {
-        label: "Time",
-        type: "range",
-        fieldName: "time",
-        additionalAttr: {
-            min: "0",
-            max: "180",
-            step: "10"
-        }
-    }
+    // {
+    //     label: "Time",
+    //     type: "range",
+    //     fieldName: "readyInMinutes",
+    //     additionalAttr: {
+    //         min: "0",
+    //         max: "180",
+    //         step: "10"
+    //     }
+    // }
 ];
 
 const SortOptions = [

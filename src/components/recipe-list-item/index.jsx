@@ -19,9 +19,6 @@ const RecipeListItem = (props) => {
           <div className="recipe-title">
             <span>{recipe.title}</span>
           </div>
-          <div className="recipe-summary">
-            <RecipeSummary summary={recipe.summary} />
-          </div>
         </div>
       </div>
     </div>

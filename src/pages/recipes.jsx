@@ -10,21 +10,41 @@ const switchPage = (hist, url, recipe) => {
 
 
 const Recipes = (props) => {
-	const [filter, setFilter] = useState({});
+	const [filters, setFilters] = useState({ 
+		vegetarian: true, 
+		vegan: true, 
+		glutenFree: true, 
+		dairyFree: true, 
+		// readyInMinutes: "180"
+	});
 	const [recipeList, setRecipeList] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [test, setTest] = useState();
 
 	const updateFilter = (key, value) => {
-		var tempFilter = filter;
+		var tempFilter = {...filters};
 		tempFilter[key] = value;
-		setFilter(tempFilter);
+		setFilters(tempFilter);
 	};
 	
-	 
-    useEffect(() => {
-        setTest(JSON.stringify(filter));
-    }, [filter]);
+	// const applyFilter = (item) => {
+	// 	var filterKey;
+	// 	for (filterKey in filters) {
+	// 		if(item[filterKey] !== filters[filterKey] ) {
+	// 			return false;
+	// 		}
+	// 	}
+	// 	return true;
+	// } 
+
+    // useEffect(() => {
+    //     // filter recipes
+	// 	setIsLoading(true);
+	// 	console.log(recipeList)
+	// 	var filteredRecipes = recipeList.filter(applyFilter);
+	// 	console.log(recipeList.filter(applyFilter))
+	// 	setRecipeList(filteredRecipes);
+	// 	setIsLoading(false);
+    // }, [filters]);
 
 
 	// eslint-disable-next-line
@@ -33,7 +53,7 @@ const Recipes = (props) => {
 			setRecipeList(JSON.parse(localStorage.getItem("recipeList")));
 			setIsLoading(false);
 		} else {
-			await fetch('https://api.spoonacular.com/recipes/random?number=20&apiKey=3c6b5aedfaf34bb899d1751ea2feb1b2')
+			await fetch('https://api.spoonacular.com/recipes/random?number=100&apiKey=3c6b5aedfaf34bb899d1751ea2feb1b2')
 							.then((resp) => resp.json())
 							.then((data) => {
 			setRecipeList(data.recipes);
@@ -51,27 +71,24 @@ const Recipes = (props) => {
 	} else {
 		return( 
 		<div class="recipe-list-page">
-			<p>
-				{JSON.stringify(test)}
-			</p>
 			<div className="recipe-list-container">
 				{recipeList.map((value) => {
 					return <RecipeListItem switchPage={switchPage} recipe={value} />
 				})}
 			</div>
-			<div class="recipe-list-filter">
+			{/* <div class="recipe-list-filter">
 				<ul>
 					<li>
 						{FilterOptions.map((filterOption) => {
 							return 	<FilterItem 
 										filterOption={filterOption} 
 										updateFilter={updateFilter} 
-										filter={filter}
+										filter={filters}
 									/>
 						})}
 					</li>
 				</ul>
-			</div>
+			</div> */}
 		</div>
 		);
 	}	
